@@ -1,4 +1,6 @@
-﻿public class Tarjeta
+﻿using WinFormsApp1;
+
+public class Tarjeta
 {
 
     public int id { get; set; }

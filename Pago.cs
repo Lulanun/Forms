@@ -1,4 +1,6 @@
-﻿public class Pago
+﻿using WinFormsApp1;
+
+public class Pago
 {
 
     public int id { get; set; }

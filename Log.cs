@@ -48,15 +48,15 @@ namespace WinFormsApp1
 
         }
 
-        public delegate void TransfDelegado(string usuario, string pass, string dni, string apellido, string mail);
+        public delegate void TransfDelegado(string usuario, string pass/*, string dni, string apellido, string mail*/);
         private void button2_Click(object sender, EventArgs e)
         {
             usuario = textBoxLogUser.Text;
             pass = textBoxLogPass.Text;
             //dni = textBoxDni.Text;
-            if (usuario != null && usuario != "" && pass != null)
+            if (usuario != null && pass != null)
             {
-                this.TransfEvento(usuario, pass, dni, apellido, mail);
+                this.TransfEvento(usuario, pass/*, dni, apellido, mail*/);
             }
             else
                 MessageBox.Show("Error al ingresar sesion");
@@ -70,8 +70,8 @@ namespace WinFormsApp1
             pass = textBoxPass.Text;
             dni = textBoxDni.Text;
 
-            if (elBanco.agregarUsuario(textBoxNombre.Text, textBoxDni.Text, textBoxPass.Text))
-                MessageBox.Show("Usuario Agregado con éxito");
+            if (elBanco.agregarUsuario(dni, usuario, pass))
+                MessageBox.Show("Usuario Agregado con éxito\n" + elBanco.obtenerUsuarios().ToArray());
             else
                 MessageBox.Show("No se pudo agregar el usuario");
 

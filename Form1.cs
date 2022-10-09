@@ -34,19 +34,19 @@ namespace WinFormsApp1
             hijoLoguin.MdiParent = this;
             hijoLoguin.TransfEvento += TransfDelegado;
             hijoLoguin.Show();
-            touched = false;
+            touched = false;    
 
         }
 
-        private void TransfDelegado(string Usuario, string Pass, string Dni) 
+        private void TransfDelegado(string Usuario, string Pass/*, string Dni*/) 
         {
             this.usuario = Usuario;
             this.pass = Pass;
-            this.dni = Dni;
+            //this.dni = Dni;
 
-            if (banco.iniciarSesion(usuario, pass, dni))
+            if (banco.iniciarSesion(usuario, pass/*, dni*/))
             {
-                MessageBox.Show("Log in correcto, Usuario: " + usuario, "Log In", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Correcto, Usuario: " + usuario, "Log In", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 hijoLoguin.Close();
                 hijoMain = new Menu(new object[] { usuario, banco });
                 hijoMain.usuario = Usuario;

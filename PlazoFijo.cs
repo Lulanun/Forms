@@ -1,4 +1,6 @@
-﻿public class PlazoFijo
+﻿using WinFormsApp1;
+
+public class PlazoFijo
 {
     public int id { get; set; }
     public Usuario titular { get; set; }

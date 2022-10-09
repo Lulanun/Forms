@@ -34,6 +34,10 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxMail = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxApellido = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,10 +54,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Incorrecto = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxApellido = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxMail = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -94,6 +94,42 @@
             this.tabPage1.Size = new System.Drawing.Size(625, 293);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Registro";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label7.Location = new System.Drawing.Point(18, 115);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 18);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Mail";
+            // 
+            // textBoxMail
+            // 
+            this.textBoxMail.Location = new System.Drawing.Point(140, 110);
+            this.textBoxMail.Name = "textBoxMail";
+            this.textBoxMail.Size = new System.Drawing.Size(150, 23);
+            this.textBoxMail.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label6.Location = new System.Drawing.Point(18, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 18);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Apellido ";
+            // 
+            // textBoxApellido
+            // 
+            this.textBoxApellido.Location = new System.Drawing.Point(140, 65);
+            this.textBoxApellido.Name = "textBoxApellido";
+            this.textBoxApellido.Size = new System.Drawing.Size(150, 23);
+            this.textBoxApellido.TabIndex = 1;
             // 
             // label3
             // 
@@ -140,7 +176,7 @@
             this.button1.Location = new System.Drawing.Point(332, 213);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(236, 55);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 5;
             this.button1.Text = "Registrarse";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -160,7 +196,7 @@
             this.textBoxPass.Location = new System.Drawing.Point(140, 192);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.Size = new System.Drawing.Size(150, 23);
-            this.textBoxPass.TabIndex = 2;
+            this.textBoxPass.TabIndex = 4;
             this.textBoxPass.TextChanged += new System.EventHandler(this.textBoxPass_TextChanged);
             // 
             // textBoxDni
@@ -168,7 +204,7 @@
             this.textBoxDni.Location = new System.Drawing.Point(140, 150);
             this.textBoxDni.Name = "textBoxDni";
             this.textBoxDni.Size = new System.Drawing.Size(150, 23);
-            this.textBoxDni.TabIndex = 1;
+            this.textBoxDni.TabIndex = 3;
             // 
             // textBoxNombre
             // 
@@ -201,7 +237,7 @@
             this.button2.Location = new System.Drawing.Point(379, 122);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(155, 55);
-            this.button2.TabIndex = 5;
+            this.button2.TabIndex = 8;
             this.button2.Text = "Iniciar Sesion";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -212,14 +248,14 @@
             this.textBoxLogPass.Name = "textBoxLogPass";
             this.textBoxLogPass.PasswordChar = '*';
             this.textBoxLogPass.Size = new System.Drawing.Size(121, 23);
-            this.textBoxLogPass.TabIndex = 4;
+            this.textBoxLogPass.TabIndex = 7;
             // 
             // textBoxLogUser
             // 
             this.textBoxLogUser.Location = new System.Drawing.Point(132, 114);
             this.textBoxLogUser.Name = "textBoxLogUser";
             this.textBoxLogUser.Size = new System.Drawing.Size(121, 23);
-            this.textBoxLogUser.TabIndex = 3;
+            this.textBoxLogUser.TabIndex = 6;
             // 
             // pictureBox2
             // 
@@ -258,42 +294,6 @@
             // 
             this.Incorrecto.ContainerControl = this;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(18, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 18);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Apellido ";
-            // 
-            // textBoxApellido
-            // 
-            this.textBoxApellido.Location = new System.Drawing.Point(140, 65);
-            this.textBoxApellido.Name = "textBoxApellido";
-            this.textBoxApellido.Size = new System.Drawing.Size(150, 23);
-            this.textBoxApellido.TabIndex = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(18, 115);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(37, 18);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Mail";
-            // 
-            // textBoxMail
-            // 
-            this.textBoxMail.Location = new System.Drawing.Point(140, 110);
-            this.textBoxMail.Name = "textBoxMail";
-            this.textBoxMail.Size = new System.Drawing.Size(150, 23);
-            this.textBoxMail.TabIndex = 12;
-            // 
             // Log
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -303,6 +303,7 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Log";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Log";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
