@@ -21,6 +21,8 @@ namespace WinFormsApp1
         public string apellido;
 
         public Banco elBanco;
+        public Helper helper;
+
 
         public TransfDelegado TransfEvento;
 
@@ -29,6 +31,8 @@ namespace WinFormsApp1
             logued = false;
             InitializeComponent();
             elBanco = b;
+            //helper = new Helper();
+            //helper.CargarListas();
         }
 
 
@@ -78,7 +82,6 @@ namespace WinFormsApp1
             if (elBanco.AltaDeUsuario(dni, usuario, apellido, mail, pass))
             {
                 MessageBox.Show("Usuario Agregado con éxito");
-                this.TransfEvento(usuario, pass);
             }
             else
             {

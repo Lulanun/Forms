@@ -27,15 +27,15 @@ namespace WinFormsApp1
         public Form1()
         {
             InitializeComponent();
-            banco = new Banco();
+            banco = Banco.GetInstancia();
             logued = false;
             hijoLoguin = new Log(banco);
             hijoLoguin.logued = false;
             hijoLoguin.MdiParent = this;
             hijoLoguin.TransfEvento += TransfDelegado;
             hijoLoguin.Show();
-            touched = false;    
-
+            touched = false;
+            
         }
 
         private void TransfDelegado(string Usuario, string Pass) 
@@ -60,7 +60,6 @@ namespace WinFormsApp1
             }
 
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {

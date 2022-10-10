@@ -10,7 +10,7 @@ namespace WinFormsApp1
 {
     public class Helper
     {
-        Banco banco = new Banco();
+        Banco banco = Banco.GetInstancia();
 
         public void CargarListas()
         {
@@ -24,22 +24,12 @@ namespace WinFormsApp1
             banco.AltaDeUsuario("132", "Car", "Dun", "car@dun.com", "123");
             banco.AltaDeUsuario("465", "Ana", "Con", "ana@con.com", "123");
 
-            banco.AltaCajaAhorro("123", "123");
-            banco.AltaCajaAhorro("123", "1234");
-            banco.AltaCajaAhorro("456", "456");
-            banco.AltaCajaAhorro("456", "4567");
-            banco.AltaCajaAhorro("789", "789");
-            banco.AltaCajaAhorro("789", "7891");
-            banco.AltaCajaAhorro("987", "987");
-            banco.AltaCajaAhorro("987", "9878");
-            banco.AltaCajaAhorro("654", "654");
-            banco.AltaCajaAhorro("654", "6545");
-            banco.AltaCajaAhorro("321", "321");
-            banco.AltaCajaAhorro("321", "3212");
-            banco.AltaCajaAhorro("132", "132");
-            banco.AltaCajaAhorro("132", "1323");
-            banco.AltaCajaAhorro("465", "465");
-            banco.AltaCajaAhorro("465", "4656");
+            banco.AltaCajaAhorro();
+            banco.AltaCajaAhorro();
+            banco.AltaCajaAhorro();
+            banco.AltaCajaAhorro();
+            banco.AltaCajaAhorro();
+            banco.AltaCajaAhorro();
 
             banco.AltaPlazoFijo("123", 10, new DateTime(2021, 10, 25), new DateTime(2022, 10, 25), 50);
             banco.AltaPlazoFijo("123", 10, new DateTime(2021, 10, 25), new DateTime(2022, 10, 25), 50);

@@ -25,16 +25,16 @@ namespace WinFormsApp1
         private Pagos hijoPago;
         List<List<string>> datos;
         public string usuario;
-        public Banco miBanco;
+        public Banco miBanco = Banco.GetInstancia();
         public Usuario? usuarioActual;
         public string nombre;
         public double monto;
         public TipoDePago pago;
 
 
-        public Menu(string usuario, Banco b)
+        public Menu(string usuario)
         {
-            this.miBanco = b;
+            //this.miBanco = Banco.GetInstancia();
             this.usuario = usuario;
         }
 
@@ -46,7 +46,7 @@ namespace WinFormsApp1
             hijoPago = new Pagos();
             //hijoPago.MdiParent = this;
             datos = new List<List<string>>();
-            //dataGridView1.DataSource = miBanco.obtenerUsuarios().ToArray();
+            dataGridView1.DataSource = miBanco.MostrarCajasDeAhorro(miBanco.UsuarioActual.dni).ToArray();
             //dataGridView2.DataSource = miBanco.obtenerUsuarios().ToArray();
             //dataGridView3.DataSource = miBanco.obtenerUsuarios().ToArray();
             //dataGridView4.DataSource = miBanco.obtenerUsuarios().ToArray();
@@ -59,7 +59,7 @@ namespace WinFormsApp1
             nombre = nombrePago.Text;
             monto = double.Parse(montoPago.Text);
 
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,11 +96,10 @@ namespace WinFormsApp1
         private void crearCajaAhorro(object sender, EventArgs e)
         {
 
-
-
-            if (miBanco.CrearCajaAhorro(null))//crarCja()
+            if (miBanco.AltaCajaAhorro())
             {
-                MessageBox.Show("Nueva caja creada con exito!!\nTitular: " + "\nCbu: " + "\nSaldo: ");
+                MessageBox.Show("Nueva caja creada con exito");
+                dataGridView1.DataSource = miBanco.MostrarCajasDeAhorro(miBanco.UsuarioActual.dni).ToArray();
             }
             else
             {
@@ -140,8 +139,9 @@ namespace WinFormsApp1
         {
             if (Seleccionar.Selected)
             {
-                // if (miBanco.ModificarCajaAhorro(dataGridView1.CurrentCell.RowIndex,)
-                if(true)
+                String Nombre = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+
+                if (true)
                 {
                     MessageBox.Show("Caja modificada con exito");
                 }
@@ -157,7 +157,7 @@ namespace WinFormsApp1
 
         }
 
- 
+
     }
 }
 

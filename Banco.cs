@@ -24,27 +24,43 @@ public class Banco
     private List<Movimiento> movimientos = new List<Movimiento>();
 
     public Usuario? UsuarioActual { get; set; }
-    public Helper helper;
+    private static Banco instancia { get; set; }
 
 
-    public Banco()
+    private Banco()
     {
-        helper = new Helper();
     }
+
+    public static Banco GetInstancia()
+    {
+        if (instancia == null)
+        {
+            instancia = new Banco();
+        }
+        return instancia;
+    }
+
     // ABM CLASES
 
     //agregamos ID o no ? 
     public bool AltaDeUsuario(string dni, string nombre, string apellido, string mail, string clave)
     {
         bool resultado = false;
-        foreach (Usuario usuario in usuarios)
+
+        if (dni != null && nombre != null && apellido != null && mail != null && clave != null)
+        {
+            usuarios.Add(new Usuario(NewIdUsuario(), dni, nombre, apellido, mail, clave));
+            resultado = true;
+        }
+
+        /*foreach (Usuario usuario in usuarios)
         {
             if (usuario.dni != dni)
             {
                 usuarios.Add(new Usuario(NewIdUsuario(), dni, nombre, apellido, mail, clave));
                 resultado = true;
             }
-        }
+        }*/
         return resultado;
     }
 
@@ -134,21 +150,42 @@ public class Banco
 
 
 
-    public bool AltaCajaAhorro(string cbu, string dni)
+    public bool AltaCajaAhorro()
 
     {
         bool resultado = false;
-        Usuario titular = BuscarUsuarioPordni(dni);
+        //Usuario titular = BuscarUsuarioPordni(dni);
 
-        foreach (CajaDeAhorro caja in cajas)
+        Random rd = new Random();
+
+        if (cajas.Count() == 0)
         {
+            string rnd = rd.Next(100, 999).ToString();
 
-            if (caja.cbu != cbu)
+            CajaDeAhorro nuevaCaja = new CajaDeAhorro(NewIdCaja(), rnd, UsuarioActual);
+            UsuarioActual.AddCajaDeAhorro(nuevaCaja);
+            cajas.Add(nuevaCaja);
+
+            resultado = true;
+        }
+        else
+        {
+            foreach (CajaDeAhorro caja in cajas)
             {
-                resultado = true;
-                cajas.Add(new CajaDeAhorro(0, cbu, titular));
-                titular.AddCajaDeAhorro(caja);
+                string rnd = rd.Next(100, 999).ToString();
+
+                bool condicion = !caja.cbu.Equals(rnd);
+
+                while (condicion)
+                {
+                    CajaDeAhorro nuevaCaja = new CajaDeAhorro(NewIdCaja(), rnd, UsuarioActual);
+                    UsuarioActual.AddCajaDeAhorro(nuevaCaja);
+                    cajas.Add(nuevaCaja);
+
+                    resultado = true;
+                }
             }
+
         }
 
         return resultado;
@@ -355,17 +392,15 @@ public class Banco
 
     // MOSTRAR DATOS
 
-    public List<CajaDeAhorro> MostrarCajasDeAhorro(int dni)
+    public List<CajaDeAhorro> MostrarCajasDeAhorro(string dni)
     {
 
         foreach (Usuario usuario in usuarios)
         {
-
             if (usuario.dni.Equals(dni))
             {
                 return usuario.getCajas().ToList();
             }
-
         }
         return null;
     }
@@ -482,13 +517,14 @@ public class Banco
 
     //OPERACIONES DEL USUARIO
 
-    public bool IniciarSesion(in string Usuario, in string Contraseña)
+    public bool IniciarSesion(string Usuario, string Contraseña)
     {
         int intentos = 0;
         foreach (Usuario usuario in usuarios)
         {
             if (usuario.nombre.Equals(Usuario) && usuario.clave.Equals(Contraseña) && usuario.bloqueados != true)
             {
+
                 UsuarioActual = usuario;
                 return true;
             }

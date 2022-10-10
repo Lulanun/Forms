@@ -13,7 +13,7 @@ namespace WinFormsApp1
     public partial class ModificarCaja : Form
     {
 
-        Banco banco = new Banco();
+        Banco banco = Banco.GetInstancia();
 
         public ModificarCaja()
         {
