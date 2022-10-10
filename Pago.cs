@@ -11,7 +11,7 @@ public class Pago
     public TipoDePago metodo { get; set; }
 
 
-    public Pago(int id, Usuario usuario, string nombre, float monto, bool pagado, TipoDePago metodo)
+    public Pago(int id, Usuario usuario, string nombre, float monto, TipoDePago metodo)
     {
 
         this.id = id;
@@ -37,7 +37,8 @@ public class Pago
     public enum TipoDePago { 
         
         EFECTIVO,
-        TARJETA
+        CREDITO,
+        DEBITO
     
     }
 }

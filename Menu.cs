@@ -72,10 +72,10 @@ namespace WinFormsApp1
             //borro los datos
             dataGridView1.Rows.Clear();
             //agrego lo nuevo
-            foreach (Usuario user in miBanco.obtenerUsuarios())
+            /*foreach (Usuario user in miBanco.obtenerUsuarios())
             {
                 dataGridView1.Rows.Add(user.ToString());
-            }
+            }*/
         }
 
         private void tabPlazoFijo(object sender, EventArgs e)

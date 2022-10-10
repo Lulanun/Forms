@@ -77,12 +77,12 @@ namespace WinFormsApp1
 
             if (elBanco.AltaDeUsuario(dni, usuario, apellido, mail, pass))
             {
-                MessageBox.Show("Usuario Agregado con éxito\n" + elBanco.obtenerUsuarios().ToArray().ToString());
+                MessageBox.Show("Usuario Agregado con éxito");
                 this.TransfEvento(usuario, pass);
             }
             else
             {
-                MessageBox.Show("Error al agregar el usuario" + elBanco.obtenerUsuarios().ToArray().Length);
+                MessageBox.Show("Error al agregar el usuario");
             }
         }
 

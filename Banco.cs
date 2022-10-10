@@ -212,10 +212,10 @@ public class Banco
 
     }
 
-    public void AltaPago(string dni, string nombre, float monto, string metodo)
+    public void AltaPago(string dni, string nombre, float monto, Pago.TipoDePago tipoDePago)
     {
         Usuario usuario = BuscarUsuarioPordni(dni);
-        Pago pago = new Pago(NewIdPago(), usuario, nombre, monto, metodo);
+        Pago pago = new Pago(NewIdPago(), usuario, nombre, monto, tipoDePago);
 
         pagos.Add(pago);
         usuario.AddPago(pago);

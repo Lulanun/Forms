@@ -18,8 +18,9 @@
 
 
 
-    public Usuario(string dni, string nombre, string apellido, string mail, string clave)
+    public Usuario(int id, string dni, string nombre, string apellido, string mail, string clave)
     {
+        this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
