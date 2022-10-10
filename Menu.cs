@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormsApp1;
+using static Pago;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace WinFormsApp1
@@ -21,9 +22,14 @@ namespace WinFormsApp1
         //TarjCred hijoTarjCred;
 
         public object[] argumentos;
+        private Pagos hijoPago;
         List<List<string>> datos;
         public string usuario;
         public Banco miBanco;
+        public Usuario? usuarioActual;
+        public string nombre;
+        public double monto;
+        public TipoDePago pago;
 
 
         public Menu(string usuario, Banco b)
@@ -33,19 +39,27 @@ namespace WinFormsApp1
         }
 
 
-        public Menu(object[] args)
+        public Menu()
         {
             //hijoPagos.MdiParent = this;
             InitializeComponent();
-            miBanco = (Banco)args[1];
-            argumentos = args;
-            //label2.Text = (string)args[0];
+            hijoPago = new Pagos();
+            //hijoPago.MdiParent = this;
             datos = new List<List<string>>();
-            dataGridView1.DataSource = miBanco.obtenerUsuarios().ToArray();
-            dataGridView2.DataSource = miBanco.obtenerUsuarios().ToArray();
-            dataGridView3.DataSource = miBanco.obtenerUsuarios().ToArray();
-            dataGridView4.DataSource = miBanco.obtenerUsuarios().ToArray();
-            dataGridView5.DataSource = miBanco.obtenerUsuarios().ToArray();
+            //dataGridView1.DataSource = miBanco.obtenerUsuarios().ToArray();
+            //dataGridView2.DataSource = miBanco.obtenerUsuarios().ToArray();
+            //dataGridView3.DataSource = miBanco.obtenerUsuarios().ToArray();
+            //dataGridView4.DataSource = miBanco.obtenerUsuarios().ToArray();
+            //dataGridView5.DataSource = miBanco.obtenerUsuarios().ToArray();
+        }
+
+
+        private void CrearNuevoPago(object sender, EventArgs e)
+        {
+            nombre = nombrePago.Text;
+            monto = double.Parse(montoPago.Text);
+
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -81,6 +95,9 @@ namespace WinFormsApp1
 
         private void crearCajaAhorro(object sender, EventArgs e)
         {
+
+
+
             if (miBanco.CrearCajaAhorro(null))//crarCja()
             {
                 MessageBox.Show("Nueva caja creada con exito!!\nTitular: " + "\nCbu: " + "\nSaldo: ");
@@ -139,6 +156,8 @@ namespace WinFormsApp1
         {
 
         }
+
+ 
     }
 }
 

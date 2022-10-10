@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using WinFormsApp1;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 public class Banco
@@ -221,6 +220,7 @@ public class Banco
         pagos.Add(pago);
         usuario.AddPago(pago);
     }
+
 
     public bool BajaPago(Pago pago, string dni)
     {
