@@ -48,33 +48,42 @@ namespace WinFormsApp1
 
         }
 
-        public delegate void TransfDelegado(string usuario, string pass/*, string dni, string apellido, string mail*/);
+        public delegate void TransfDelegado(string usuario, string pass);
+
         private void button2_Click(object sender, EventArgs e)
         {
             usuario = textBoxLogUser.Text;
             pass = textBoxLogPass.Text;
-            //dni = textBoxDni.Text;
             if (usuario != null && pass != null)
             {
-                this.TransfEvento(usuario, pass/*, dni, apellido, mail*/);
+                this.TransfEvento(usuario, pass);
+                logued = true;
             }
             else
-                MessageBox.Show("Error al ingresar sesion");
+            {
+                MessageBox.Show("Error al iniciar sesion");
+            }
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
         {
-            usuario = textBoxNombre.Text;
-            pass = textBoxPass.Text;
             dni = textBoxDni.Text;
+            usuario = textBoxNombre.Text;
+            apellido = textBoxApellido.Text;
+            mail = textBoxMail.Text;
+            pass = textBoxPass.Text;
 
-            if (elBanco.agregarUsuario(dni, usuario, pass))
-                MessageBox.Show("Usuario Agregado con éxito\n" + elBanco.obtenerUsuarios().ToArray());
+            if (elBanco.AltaDeUsuario(dni, usuario, apellido, mail, pass))
+            {
+                MessageBox.Show("Usuario Agregado con éxito\n" + elBanco.obtenerUsuarios().ToArray().ToString());
+                this.TransfEvento(usuario, pass);
+            }
             else
-                MessageBox.Show("No se pudo agregar el usuario");
-
+            {
+                MessageBox.Show("Error al agregar el usuario" + elBanco.obtenerUsuarios().ToArray().Length);
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -91,5 +100,6 @@ namespace WinFormsApp1
         {
 
         }
+
     }
 }

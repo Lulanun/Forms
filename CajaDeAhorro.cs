@@ -3,13 +3,13 @@
 public class CajaDeAhorro
 {
     public int id { get; set; }
-    public int cbu { get; set; }
+    public string cbu { get; set; }
 
     private List<Usuario> titulares;
     public float saldo { get; set; }
     private List<Movimiento> movimientos;
 
-    public CajaDeAhorro(int id, int cbu, Usuario titular)
+    public CajaDeAhorro(int id, string cbu, Usuario titular)
     {
         this.id = id;
         this.cbu = cbu;
@@ -17,7 +17,6 @@ public class CajaDeAhorro
         titulares.Add(titular);
         this.saldo = 0;
         this.movimientos = new List<Movimiento>();
-
     }
 
     /* Preguntar por esto 

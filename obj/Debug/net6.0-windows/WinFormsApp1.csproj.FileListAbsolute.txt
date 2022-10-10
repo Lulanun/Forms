@@ -41,3 +41,4 @@ C:\Users\COMPUPOINT\RiderProjects\Forms\bin\Debug\net6.0-windows\WinFormsApp1.pd
 C:\Users\COMPUPOINT\RiderProjects\Forms\obj\Debug\net6.0-windows\WinFormsApp1.genruntimeconfig.cache
 C:\Users\COMPUPOINT\RiderProjects\Forms\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll
 C:\Users\COMPUPOINT\RiderProjects\Forms\obj\Debug\net6.0-windows\WinFormsApp1.CrearCaja.resources
+C:\Users\COMPUPOINT\RiderProjects\Forms\obj\Debug\net6.0-windows\WinFormsApp1.ModificarCaja.resources

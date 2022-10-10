@@ -22,7 +22,7 @@ namespace WinFormsApp1
         string dni;
         bool logued;
         public bool touched;
-
+        public Usuario? usuarioActual;
 
         public Form1()
         {
@@ -38,19 +38,19 @@ namespace WinFormsApp1
 
         }
 
-        private void TransfDelegado(string Usuario, string Pass/*, string Dni*/) 
+        private void TransfDelegado(string Usuario, string Pass) 
         {
             this.usuario = Usuario;
             this.pass = Pass;
-            //this.dni = Dni;
 
-            if (banco.iniciarSesion(usuario, pass/*, dni*/))
+            if (banco.IniciarSesion(usuario, pass))
             {
                 MessageBox.Show("Correcto, Usuario: " + usuario, "Log In", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 hijoLoguin.Close();
                 hijoMain = new Menu(new object[] { usuario, banco });
                 hijoMain.usuario = Usuario;
                 hijoMain.MdiParent = this;
+                usuarioActual = banco.UsuarioActual;
                 hijoMain.Show();
             }
             else

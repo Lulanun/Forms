@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Seleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Tab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button10 = new System.Windows.Forms.Button();
@@ -68,12 +69,20 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Seleccionar});
             this.dataGridView1.Location = new System.Drawing.Point(17, 15);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.ShowRowErrors = false;
             this.dataGridView1.Size = new System.Drawing.Size(551, 345);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Seleccionar
+            // 
+            this.Seleccionar.HeaderText = "Seleccionar";
+            this.Seleccionar.Name = "Seleccionar";
             // 
             // Tab
             // 
@@ -116,7 +125,6 @@
             this.button10.TabIndex = 7;
             this.button10.Text = "Depositar";
             this.button10.UseVisualStyleBackColor = false;
-            this.button10.Visible = false;
             this.button10.Click += new System.EventHandler(this.depositar);
             // 
             // button9
@@ -130,7 +138,6 @@
             this.button9.TabIndex = 6;
             this.button9.Text = "Retirar";
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.Visible = false;
             this.button9.Click += new System.EventHandler(this.retirar);
             // 
             // button8
@@ -144,7 +151,6 @@
             this.button8.TabIndex = 5;
             this.button8.Text = "Transferir";
             this.button8.UseVisualStyleBackColor = false;
-            this.button8.Visible = false;
             this.button8.Click += new System.EventHandler(this.transferir);
             // 
             // button7
@@ -158,7 +164,6 @@
             this.button7.TabIndex = 4;
             this.button7.Text = "Ver Detalle";
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.verDetalle);
             // 
             // button6
@@ -172,7 +177,6 @@
             this.button6.TabIndex = 3;
             this.button6.Text = "Modificar";
             this.button6.UseVisualStyleBackColor = false;
-            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.modificar);
             // 
             // button5
@@ -186,7 +190,6 @@
             this.button5.TabIndex = 2;
             this.button5.Text = "Dar de Baja";
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.darDeBaja);
             // 
             // button4
@@ -403,5 +406,6 @@
         private Button button12;
         private Button button11;
         private Label UsuarioSesion;
+        private DataGridViewCheckBoxColumn Seleccionar;
     }
 }

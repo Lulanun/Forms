@@ -8,6 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace WinFormsApp1
@@ -80,7 +81,7 @@ namespace WinFormsApp1
 
         private void crearCajaAhorro(object sender, EventArgs e)
         {
-            if (true)//crarCja()
+            if (miBanco.CrearCajaAhorro(null))//crarCja()
             {
                 MessageBox.Show("Nueva caja creada con exito!!\nTitular: " + "\nCbu: " + "\nSaldo: ");
             }
@@ -114,19 +115,29 @@ namespace WinFormsApp1
         {
             if (true)//banco.BajaCaja()
             {
-                
+
             }
         }
 
         private void modificar(object sender, EventArgs e)
         {
-            if (true)//banco.modificarCaja()
+            if (Seleccionar.Selected)
             {
-                MessageBox.Show("Caja modificada con exito");
-            }else
-            {
-                MessageBox.Show("No se pudo modificar la caja");
+                // if (miBanco.ModificarCajaAhorro(dataGridView1.CurrentCell.RowIndex,)
+                if(true)
+                {
+                    MessageBox.Show("Caja modificada con exito");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo modificar la caja");
+                }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -20,8 +20,6 @@
 
     public Usuario(string dni, string nombre, string apellido, string mail, string clave)
     {
-
-
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
