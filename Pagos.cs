@@ -26,5 +26,10 @@ namespace WinFormsApp1
         {
 
         }
+
+        private void Pagar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

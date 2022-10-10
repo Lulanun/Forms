@@ -15,7 +15,9 @@ namespace WinFormsApp1
 {
     public partial class Menu : Form
     {
-        //Pagos hijoPagos; Lo comentamos no sabemos que hace, fue idea de Lu
+        Pagos hijoPagos; 
+        ModificarCaja hijoModificar;
+
         //CajaAhorro hijoCajaAhorro;
         //PlazoFijo hijoPlazoFijo;
         //TarjCred hijoTarjCred;
@@ -35,11 +37,16 @@ namespace WinFormsApp1
 
         public Menu(object[] args)
         {
-            //hijoPagos.MdiParent = this;
+            hijoPagos = new Pagos();
+            hijoModificar = new ModificarCaja();
+           // hijoPagos.MdiParent = this;
             InitializeComponent();
             miBanco = (Banco)args[1];
             argumentos = args;
-            //label2.Text = (string)args[0];
+            UsuarioSesion.Text = (string)args[0];
+            //UsuarioSesion1.Text = (string)args[0];
+          //  UsuarioSesion2.Text = (string)args[0];
+           // UsuarioSesion3.Text = (string)args[0];
             datos = new List<List<string>>();
             dataGridView1.DataSource = miBanco.obtenerUsuarios().ToArray();
             dataGridView2.DataSource = miBanco.obtenerUsuarios().ToArray();
@@ -81,6 +88,7 @@ namespace WinFormsApp1
 
         private void crearCajaAhorro(object sender, EventArgs e)
         {
+           
             if (miBanco.CrearCajaAhorro(null))//crarCja()
             {
                 MessageBox.Show("Nueva caja creada con exito!!\nTitular: " + "\nCbu: " + "\nSaldo: ");
@@ -121,8 +129,10 @@ namespace WinFormsApp1
 
         private void modificar(object sender, EventArgs e)
         {
+            hijoModificar.Show();
             if (Seleccionar.Selected)
             {
+                
                 // if (miBanco.ModificarCajaAhorro(dataGridView1.CurrentCell.RowIndex,)
                 if(true)
                 {
@@ -138,6 +148,16 @@ namespace WinFormsApp1
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void UsuarioSesion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hacerpago(object sender, EventArgs e)
+        {
+            hijoPagos.Show();
         }
     }
 }

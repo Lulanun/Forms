@@ -16,6 +16,7 @@ namespace WinFormsApp1
         private Banco banco;
         Log hijoLoguin;
         Menu hijoMain;
+        
         internal string texto;
         string usuario;
         string pass;

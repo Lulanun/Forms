@@ -274,6 +274,7 @@
             this.UsuarioSesion.Size = new System.Drawing.Size(100, 15);
             this.UsuarioSesion.TabIndex = 10;
             this.UsuarioSesion.Text = "Usuario en Sesion";
+            this.UsuarioSesion.Click += new System.EventHandler(this.UsuarioSesion_Click);
             // 
             // button13
             // 
@@ -286,6 +287,7 @@
             this.button13.TabIndex = 9;
             this.button13.Text = "Pagar";
             this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.hacerpago);
             // 
             // button12
             // 
@@ -363,6 +365,7 @@
             this.ClientSize = new System.Drawing.Size(1372, 653);
             this.Controls.Add(this.Tab);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IsMdiContainer = true;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "inicio";

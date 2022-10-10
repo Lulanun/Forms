@@ -650,10 +650,6 @@ public class Banco
      }*/
 
 
-
-
-
-
     public void PagarTarjeta(Tarjeta tarjetaIn, CajaDeAhorro cajaIn)
     {
 

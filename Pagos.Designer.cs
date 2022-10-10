@@ -70,6 +70,7 @@
             this.Pagar.TabIndex = 2;
             this.Pagar.Text = "Pagar";
             this.Pagar.UseVisualStyleBackColor = false;
+            this.Pagar.Click += new System.EventHandler(this.Pagar_Click);
             // 
             // Volver
             // 
