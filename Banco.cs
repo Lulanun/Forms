@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using WinFormsApp1;
+using static Pago;
 
 public class Banco
 {
@@ -215,6 +216,15 @@ public class Banco
         Usuario usuario = BuscarUsuarioPordni(dni);
         pagos.Add(pago);
         usuario.AddPago(pago);
+
+    }
+
+    public void AltaPago(string nombre, double monto,TipoDePago metodo)
+    {
+        Pago pago = new Pago(nombre, monto, metodo);
+
+        pagos.Add(pago);
+        
 
     }
 

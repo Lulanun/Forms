@@ -47,7 +47,7 @@ namespace WinFormsApp1
             {
                 MessageBox.Show("Correcto, Usuario: " + usuario, "Log In", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 hijoLoguin.Close();
-                hijoMain = new Menu(new object[] { usuario, banco });
+                hijoMain = new Menu();
                 hijoMain.usuario = Usuario;
                 hijoMain.MdiParent = this;
                 usuarioActual = banco.UsuarioActual;

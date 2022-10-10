@@ -44,6 +44,12 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tipoDePago = new System.Windows.Forms.ComboBox();
+            this.montoPago = new System.Windows.Forms.TextBox();
+            this.metodoP = new System.Windows.Forms.Label();
+            this.montoP = new System.Windows.Forms.Label();
+            this.nombreP = new System.Windows.Forms.Label();
+            this.nombrePago = new System.Windows.Forms.TextBox();
             this.UsuarioSesion = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -252,6 +258,12 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.LightBlue;
+            this.tabPage4.Controls.Add(this.tipoDePago);
+            this.tabPage4.Controls.Add(this.montoPago);
+            this.tabPage4.Controls.Add(this.metodoP);
+            this.tabPage4.Controls.Add(this.montoP);
+            this.tabPage4.Controls.Add(this.nombreP);
+            this.tabPage4.Controls.Add(this.nombrePago);
             this.tabPage4.Controls.Add(this.UsuarioSesion);
             this.tabPage4.Controls.Add(this.button13);
             this.tabPage4.Controls.Add(this.button12);
@@ -265,6 +277,57 @@
             this.tabPage4.Size = new System.Drawing.Size(1340, 609);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Pago";
+            // 
+            // tipoDePago
+            // 
+
+            this.tipoDePago.FormattingEnabled = true;
+            this.tipoDePago.Items.AddRange(Enum.GetNames(typeof(Pago.TipoDePago)));
+            this.tipoDePago.Location = new System.Drawing.Point(112, 86);
+            this.tipoDePago.Name = "tipoDePago";
+            this.tipoDePago.Size = new System.Drawing.Size(121, 23);
+            this.tipoDePago.TabIndex = 19;
+            // 
+            // montoPago
+            // 
+            this.montoPago.Location = new System.Drawing.Point(112, 52);
+            this.montoPago.Name = "montoPago";
+            this.montoPago.Size = new System.Drawing.Size(100, 23);
+            this.montoPago.TabIndex = 17;
+            // 
+            // metodoP
+            // 
+            this.metodoP.AutoSize = true;
+            this.metodoP.Location = new System.Drawing.Point(36, 89);
+            this.metodoP.Name = "metodoP";
+            this.metodoP.Size = new System.Drawing.Size(49, 15);
+            this.metodoP.TabIndex = 14;
+            this.metodoP.Text = "Metodo";
+            // 
+            // montoP
+            // 
+            this.montoP.AutoSize = true;
+            this.montoP.Location = new System.Drawing.Point(36, 55);
+            this.montoP.Name = "montoP";
+            this.montoP.Size = new System.Drawing.Size(43, 15);
+            this.montoP.TabIndex = 13;
+            this.montoP.Text = "Monto";
+            // 
+            // nombreP
+            // 
+            this.nombreP.AutoSize = true;
+            this.nombreP.Location = new System.Drawing.Point(36, 22);
+            this.nombreP.Name = "nombreP";
+            this.nombreP.Size = new System.Drawing.Size(69, 15);
+            this.nombreP.TabIndex = 12;
+            this.nombreP.Text = "Descripcion";
+            // 
+            // nombrePago
+            // 
+            this.nombrePago.Location = new System.Drawing.Point(112, 19);
+            this.nombrePago.Name = "nombrePago";
+            this.nombrePago.Size = new System.Drawing.Size(100, 23);
+            this.nombrePago.TabIndex = 11;
             // 
             // UsuarioSesion
             // 
@@ -304,18 +367,19 @@
             this.button11.BackColor = System.Drawing.Color.White;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button11.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button11.Location = new System.Drawing.Point(6, 36);
+            this.button11.Location = new System.Drawing.Point(36, 137);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(232, 53);
+            this.button11.Size = new System.Drawing.Size(190, 48);
             this.button11.TabIndex = 7;
             this.button11.Text = "Crear Nuevo Pago";
             this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.CrearNuevoPago);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(6, 145);
+            this.label2.Location = new System.Drawing.Point(6, 217);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(206, 22);
             this.label2.TabIndex = 6;
@@ -326,7 +390,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(673, 145);
+            this.label1.Location = new System.Drawing.Point(673, 217);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(205, 22);
             this.label1.TabIndex = 5;
@@ -338,10 +402,10 @@
             this.dataGridView5.AllowUserToOrderColumns = true;
             this.dataGridView5.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(3, 182);
+            this.dataGridView5.Location = new System.Drawing.Point(3, 256);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowTemplate.Height = 25;
-            this.dataGridView5.Size = new System.Drawing.Size(646, 309);
+            this.dataGridView5.Size = new System.Drawing.Size(646, 235);
             this.dataGridView5.TabIndex = 4;
             // 
             // dataGridView4
@@ -349,10 +413,10 @@
             this.dataGridView4.AllowUserToOrderColumns = true;
             this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(673, 182);
+            this.dataGridView4.Location = new System.Drawing.Point(673, 256);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowTemplate.Height = 25;
-            this.dataGridView4.Size = new System.Drawing.Size(668, 309);
+            this.dataGridView4.Size = new System.Drawing.Size(668, 235);
             this.dataGridView4.TabIndex = 3;
             // 
             // Menu
@@ -407,5 +471,11 @@
         private Button button11;
         private Label UsuarioSesion;
         private DataGridViewCheckBoxColumn Seleccionar;
+        private TextBox nombrePago;
+        private TextBox montoPago;
+        private Label metodoP;
+        private Label montoP;
+        private Label nombreP;
+        private ComboBox tipoDePago;
     }
 }
