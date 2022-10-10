@@ -23,16 +23,26 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             string dniTitular = txtTitular.Text;
-            string cbu = txtCbu.Text;
+            string cbu = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+
+            MessageBox.Show("Estoy en el metodo");
 
             if (tabAgregar.Focus())
             {
+                MessageBox.Show("Estoy en el if");
                 banco.ModificarCajaAhorro(cbu, dniTitular, "agregar");
-            }else if (tabEliminar.Focus())
+            }
+            else if (tabEliminar.Focus())
             {
-
+                MessageBox.Show("Estoy en el else");
+                banco.ModificarCajaAhorro(cbu, dniTitular, "eliminar");
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

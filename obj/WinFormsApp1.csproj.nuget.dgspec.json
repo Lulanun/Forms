@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lauta\\OneDrive\\Documentos\\GitHub\\Forms\\WinFormsApp1.csproj": {}
+    "C:\\Users\\lucia\\Desktop\\Plataformas de Desarrollo\\WinFormsApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lauta\\OneDrive\\Documentos\\GitHub\\Forms\\WinFormsApp1.csproj": {
+    "C:\\Users\\lucia\\Desktop\\Plataformas de Desarrollo\\WinFormsApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lauta\\OneDrive\\Documentos\\GitHub\\Forms\\WinFormsApp1.csproj",
+        "projectUniqueName": "C:\\Users\\lucia\\Desktop\\Plataformas de Desarrollo\\WinFormsApp1.csproj",
         "projectName": "WinFormsApp1",
-        "projectPath": "C:\\Users\\lauta\\OneDrive\\Documentos\\GitHub\\Forms\\WinFormsApp1.csproj",
-        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lauta\\OneDrive\\Documentos\\GitHub\\Forms\\obj\\",
+        "projectPath": "C:\\Users\\lucia\\Desktop\\Plataformas de Desarrollo\\WinFormsApp1.csproj",
+        "packagesPath": "C:\\Users\\lucia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lucia\\Desktop\\Plataformas de Desarrollo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lucia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
