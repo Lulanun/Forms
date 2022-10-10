@@ -170,22 +170,22 @@ public class Banco
         }
         else
         {
-            foreach (CajaDeAhorro caja in cajas)
+            string nuevoCbu = rd.Next(100, 999).ToString();
+
+            for (int i = 0; i < cajas.Count; i++)
             {
-                string rnd = rd.Next(100, 999).ToString();
+                string cbu = cajas.ElementAt(i).cbu;
 
-                bool condicion = !caja.cbu.Equals(rnd);
-
-                while (condicion)
+                if (!cbu.Equals(nuevoCbu))
                 {
-                    CajaDeAhorro nuevaCaja = new CajaDeAhorro(NewIdCaja(), rnd, UsuarioActual);
+
+                    CajaDeAhorro nuevaCaja = new CajaDeAhorro(NewIdCaja(), nuevoCbu, UsuarioActual);
                     UsuarioActual.AddCajaDeAhorro(nuevaCaja);
                     cajas.Add(nuevaCaja);
-
                     resultado = true;
+                    break;
                 }
             }
-
         }
 
         return resultado;
@@ -228,11 +228,15 @@ public class Banco
             caja.addTitular(titular);
             resultado = true;
         }
-        else if (accion.Equals("quitar") && caja.getTitular().Count > 1)
+        else if (accion.Equals("eliminar") && caja.getTitular().Count > 1)
         {
 
             caja.removeTitular(titular);
             resultado = true;
+        }
+        else
+        {
+            MessageBox.Show("No puede quedar sin titulares la caja de ahorro");
         }
 
         return resultado;

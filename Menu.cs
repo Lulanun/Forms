@@ -20,7 +20,7 @@ namespace WinFormsApp1
         //CajaAhorro hijoCajaAhorro;
         //PlazoFijo hijoPlazoFijo;
         //TarjCred hijoTarjCred;
-
+        ModificarCaja hijoCaja;
         public object[] argumentos;
         private Pagos hijoPago;
         List<List<string>> datos;
@@ -32,18 +32,12 @@ namespace WinFormsApp1
         public TipoDePago pago;
 
 
-        public Menu(string usuario)
-        {
-            //this.miBanco = Banco.GetInstancia();
-            this.usuario = usuario;
-        }
-
-
         public Menu()
         {
             //hijoPagos.MdiParent = this;
             InitializeComponent();
             hijoPago = new Pagos();
+            hijoCaja = new ModificarCaja();
             //hijoPago.MdiParent = this;
             datos = new List<List<string>>();
             dataGridView1.DataSource = miBanco.MostrarCajasDeAhorro(miBanco.UsuarioActual.dni).ToArray();
@@ -58,8 +52,6 @@ namespace WinFormsApp1
         {
             nombre = nombrePago.Text;
             monto = double.Parse(montoPago.Text);
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -137,19 +129,12 @@ namespace WinFormsApp1
 
         private void modificar(object sender, EventArgs e)
         {
-            if (Seleccionar.Selected)
-            {
-                String Nombre = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            hijoCaja.Show();
 
-                if (true)
-                {
-                    MessageBox.Show("Caja modificada con exito");
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo modificar la caja");
-                }
-            }
+            string cbu = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+
+            MessageBox.Show(cbu);
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
