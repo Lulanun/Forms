@@ -12,7 +12,7 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\lauta\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\lucia\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\lauta\\.nuget\\packages"
     ],
     "configProperties": {
