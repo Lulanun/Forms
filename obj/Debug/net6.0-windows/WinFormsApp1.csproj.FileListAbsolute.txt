@@ -88,3 +88,43 @@ C:\Users\lucia\Desktop\Plataformas de Desarrollo\obj\Debug\net6.0-windows\refint
 C:\Users\lucia\Desktop\Plataformas de Desarrollo\obj\Debug\net6.0-windows\WinFormsApp1.pdb
 C:\Users\lucia\Desktop\Plataformas de Desarrollo\obj\Debug\net6.0-windows\WinFormsApp1.genruntimeconfig.cache
 C:\Users\lucia\Desktop\Plataformas de Desarrollo\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\bin\Debug\net6.0-windows\WinFormsApp1.exe
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\bin\Debug\net6.0-windows\WinFormsApp1.deps.json
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\bin\Debug\net6.0-windows\WinFormsApp1.runtimeconfig.json
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\bin\Debug\net6.0-windows\WinFormsApp1.dll
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\bin\Debug\net6.0-windows\WinFormsApp1.pdb
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.csproj.AssemblyReference.cache
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Form1.resources
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Log.resources
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Menu.resources
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Properties.Resources.resources
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.AssemblyInfo.cs
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.dll
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\refint\WinFormsApp1.dll
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.pdb
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\WinFormsApp1.genruntimeconfig.cache
+C:\Users\lourd\OneDrive\Escritorio\Da Vinci\2022\2do Cuatrimestre\Plataforma de Desarrollo\Plataformas -LU BE\Forms\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll
+C:\Users\Usuario\source\repos\Forms\bin\Debug\net6.0-windows\WinFormsApp1.exe
+C:\Users\Usuario\source\repos\Forms\bin\Debug\net6.0-windows\WinFormsApp1.deps.json
+C:\Users\Usuario\source\repos\Forms\bin\Debug\net6.0-windows\WinFormsApp1.runtimeconfig.json
+C:\Users\Usuario\source\repos\Forms\bin\Debug\net6.0-windows\WinFormsApp1.dll
+C:\Users\Usuario\source\repos\Forms\bin\Debug\net6.0-windows\WinFormsApp1.pdb
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.csproj.AssemblyReference.cache
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Form1.resources
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Log.resources
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Menu.resources
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.Properties.Resources.resources
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.csproj.GenerateResource.cache
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.AssemblyInfoInputs.cache
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.AssemblyInfo.cs
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.dll
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\refint\WinFormsApp1.dll
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.pdb
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\WinFormsApp1.genruntimeconfig.cache
+C:\Users\Usuario\source\repos\Forms\obj\Debug\net6.0-windows\ref\WinFormsApp1.dll

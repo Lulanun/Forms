@@ -121,4 +121,36 @@
     {
         return tarjetas.ToList();
     }
+
+    public Tarjeta BuscarTarjetaPorNumero(int numero)
+    {
+        Tarjeta resultado = null;
+        foreach (Tarjeta tarjeta in tarjetas)
+        {
+
+            if (tarjeta.numero.Equals(numero))
+            {
+                resultado = tarjeta;
+
+            }
+        }
+        return resultado;
+    }
+
+    public CajaDeAhorro BuscarCajaPorCbu(string cbu)
+    {
+        CajaDeAhorro resultado = null;
+        foreach (CajaDeAhorro caja in cajas)
+        {
+
+            if (caja.cbu == cbu)
+            {
+                resultado = caja;
+
+            }
+        }
+        return resultado;
+    }
+
+
 }

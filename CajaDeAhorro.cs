@@ -19,13 +19,6 @@ public class CajaDeAhorro
         this.movimientos = new List<Movimiento>();
     }
 
-    /* Preguntar por esto 
-    public CajaDeAhorro()
-    {
-        this.titulares = new List<Usuario>();
-        this.movimientos = new List<Movimiento>();
-    }*/
-
     public void addMovimiento(Movimiento nuevoMovimiento)
     {
         movimientos.Add(nuevoMovimiento);
@@ -51,7 +44,4 @@ public class CajaDeAhorro
     {
         titulares.Remove(titular);
     }
-
-
-
 }

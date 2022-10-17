@@ -16,12 +16,12 @@ using WinFormsApp1;
 public class Banco
 {
 
-    private List<Usuario> usuarios = new List<Usuario>();
-    private List<CajaDeAhorro> cajas = new List<CajaDeAhorro>();
-    private List<PlazoFijo> plazos = new List<PlazoFijo>();
-    private List<Tarjeta> tarjetas = new List<Tarjeta>();
-    private List<Pago> pagos = new List<Pago>();
-    private List<Movimiento> movimientos = new List<Movimiento>();
+    private List<Usuario> usuarios;
+    private List<CajaDeAhorro> cajas;
+    private List<PlazoFijo> plazos;
+    private List<Tarjeta> tarjetas;
+    private List<Pago> pagos;
+    private List<Movimiento> movimientos;
 
     public Usuario? UsuarioActual { get; set; }
     private static Banco instancia { get; set; }
@@ -29,6 +29,13 @@ public class Banco
 
     private Banco()
     {
+        this.usuarios = new List<Usuario>();
+        this.cajas = new List<CajaDeAhorro>();
+        this.plazos = new List<PlazoFijo>();
+        this.tarjetas = new List<Tarjeta>();
+        this.pagos = new List<Pago>();
+        this.movimientos = new List<Movimiento>();
+
     }
 
     public static Banco GetInstancia()
@@ -42,56 +49,57 @@ public class Banco
 
     // ABM CLASES
 
-    //agregamos ID o no ? 
+    //agregamos ID 
     public bool AltaDeUsuario(string dni, string nombre, string apellido, string mail, string clave)
     {
         bool resultado = false;
 
-        if (dni != null && nombre != null && apellido != null && mail != null && clave != null)
+        if (usuarios.Count == 0)
         {
-            usuarios.Add(new Usuario(NewIdUsuario(), dni, nombre, apellido, mail, clave));
-            resultado = true;
-        }
-
-        /*foreach (Usuario usuario in usuarios)
-        {
-            if (usuario.dni != dni)
+            if (dni != null && nombre != null && apellido != null && mail != null && clave != null)
             {
                 usuarios.Add(new Usuario(NewIdUsuario(), dni, nombre, apellido, mail, clave));
                 resultado = true;
             }
-        }*/
+        }
+        else
+        {
+            foreach (Usuario usuario in usuarios)
+            {
+                if (!usuario.dni.Equals(dni))
+                {
+                    if (dni != null && nombre != null && apellido != null && mail != null && clave != null)
+                    {
+                        usuarios.Add(new Usuario(NewIdUsuario(), dni, nombre, apellido, mail, clave));
+                        resultado = true;
+                        break;
+                    }
+                }
+            }
+        }
+
         return resultado;
     }
 
-    public bool ModificarMail(int id, string mail)
+    public bool ModificarMail(string mail)
     {
         bool resultado = false;
-        foreach (Usuario usuario in usuarios)
+        if (mail != "" && ExisteEmail(mail))
         {
-            if (usuario.id.Equals(id))
-            {
-                usuario.mail = mail;
-                resultado = true;
-            }
+            UsuarioActual.mail = mail;
+            resultado = true;
         }
         return resultado;
     }
 
-    public bool ModificarContraseña(int id, string clave)
+    public bool ModificarContrasenia(string clave)
     {
 
         bool resultado = false;
-        foreach (Usuario usuario in usuarios)
+        if (clave != "")
         {
-
-            if (usuario.id.Equals(id))
-            {
-
-                usuario.clave = clave;
-                resultado = true;
-
-            }
+            UsuarioActual.clave = clave;
+            resultado = true;
         }
         return resultado;
     }
@@ -112,39 +120,40 @@ public class Banco
         }
     }*/
 
-    // Antes de esto se deben crear los metodos eliminar cajadeahorro, plazo fijo y tarjetas.
+
     // Falta agregar el usuario.remove en todos los forEach del metodo
-    public bool EliminarUsuario(string dni)
+    public bool EliminarUsuario()
     {
         bool resultado = false;
-        Usuario titular = BuscarUsuarioPordni(dni);
 
-        if (titular != null)
+        if (UsuarioActual.getCajas().Count == 0 && UsuarioActual.getPagos().Count == 0 && UsuarioActual.getPlazos().Count == 0 && UsuarioActual.getTarjetas().Count == 0)
         {
-            foreach (CajaDeAhorro caja in cajas)
-            {
-                foreach (PlazoFijo plazoFijos in plazos)
-                {
-                    foreach (Tarjeta tarjetas in tarjetas)
-                    {
+            usuarios.Remove(UsuarioActual);
+            resultado = true;
+        }
+        else
+        {
 
-                        if (BajaPlazoFijo(plazoFijos.id, dni) && BajaTarjetaCredito(tarjetas.id, dni) && BajaCajaAhorro(caja.id, dni))
+            foreach (CajaDeAhorro caja in UsuarioActual.getCajas())
+            {
+                MessageBox.Show("Pimer for");
+                foreach (PlazoFijo plazoFijos in UsuarioActual.getPlazos())
+                {
+                    MessageBox.Show("segundo for");
+                    foreach (Tarjeta tarjetas in UsuarioActual.getTarjetas())
+                    {
+                        MessageBox.Show("tercer for");
+
+                        if (BajaPlazoFijo(plazoFijos.id) && BajaTarjetaCredito(tarjetas.id) && BajaCajaAhorro(caja.id))
                         {
 
-                            usuarios.Remove(titular);
+                            usuarios.Remove(UsuarioActual);
                             resultado = true;
                         }
-                        else
-                        {
-                            // "El usuario no se pudo dar de baja. Verifique el estado de sus cuentas"
-                        }
-
                     }
                 }
             }
-
         }
-
         return resultado;
     }
 
@@ -165,6 +174,10 @@ public class Banco
             CajaDeAhorro nuevaCaja = new CajaDeAhorro(NewIdCaja(), rnd, UsuarioActual);
             UsuarioActual.AddCajaDeAhorro(nuevaCaja);
             cajas.Add(nuevaCaja);
+            Movimiento movimiento = new Movimiento(NewIdMovimiento(), nuevaCaja, "Caja creada" + nuevaCaja.cbu, 0, DateTime.Now);
+            movimientos.Add(movimiento);
+            nuevaCaja.addMovimiento(movimiento);
+
 
             resultado = true;
         }
@@ -182,6 +195,9 @@ public class Banco
                     CajaDeAhorro nuevaCaja = new CajaDeAhorro(NewIdCaja(), nuevoCbu, UsuarioActual);
                     UsuarioActual.AddCajaDeAhorro(nuevaCaja);
                     cajas.Add(nuevaCaja);
+                    Movimiento movimiento = new Movimiento(NewIdMovimiento(), nuevaCaja, "Caja creada" + nuevaCaja.cbu, 0, DateTime.Now);
+                    movimientos.Add(movimiento);
+                    nuevaCaja.addMovimiento(movimiento);
                     resultado = true;
                     break;
                 }
@@ -194,18 +210,17 @@ public class Banco
 
 
 
-    public bool BajaCajaAhorro(int id, string dni)
+    public bool BajaCajaAhorro(int id)
     {
         bool resultado = false;
-        Usuario titular = BuscarUsuarioPordni(dni);
-        foreach (CajaDeAhorro caja in cajas)
+        foreach (CajaDeAhorro caja in UsuarioActual.getCajas())
         {
             if (caja.id == id)
             {
                 if (caja.saldo == 0)
                 {
                     cajas.Remove(caja);
-                    titular.RemoveCajaDeAhorro(caja);
+                    UsuarioActual.RemoveCajaDeAhorro(caja);
                     resultado = true;
                 }
 
@@ -217,49 +232,77 @@ public class Banco
         return resultado;
 
     }
+
+    public bool BajaCajaAhorroPorCbu(string cbu)
+    {
+        bool resultado = false;
+        foreach (CajaDeAhorro caja in UsuarioActual.getCajas())
+        {
+            if (caja.cbu == cbu)
+            {
+                if (caja.saldo == 0)
+                {
+                    cajas.Remove(caja);
+                    UsuarioActual.RemoveCajaDeAhorro(caja);
+                    caja.removeTitular(UsuarioActual);
+                    Movimiento movimiento = new Movimiento(NewIdMovimiento(), caja, "Caja eliminada" + caja.cbu, 0, DateTime.Now);
+                    movimientos.Add(movimiento);
+                    caja.addMovimiento(movimiento);
+                    resultado = true;
+                }
+
+            }
+
+
+        }
+
+        return resultado;
+
+    }
+
+
     public bool ModificarCajaAhorro(string cbu, string dni, string accion)
     {
         bool resultado = false;
         Usuario titular = BuscarUsuarioPordni(dni);
-        CajaDeAhorro caja = BuscarCajaPorCbu(cbu);
+        CajaDeAhorro caja2 = BuscarCajaPorCbu(cbu);
 
         if (accion.Equals("agregar"))
         {
+            CajaDeAhorro caja = UsuarioActual.BuscarCajaPorCbu(cbu);
             caja.addTitular(titular);
+            caja2.addTitular(titular);
+            titular.AddCajaDeAhorro(caja);
+            Movimiento movimiento = new Movimiento(NewIdMovimiento(), caja, "Caja creada" + caja.cbu, 0, DateTime.Now);
+            movimientos.Add(movimiento);
+            caja.addMovimiento(movimiento);
             resultado = true;
         }
-        else if (accion.Equals("eliminar") && caja.getTitular().Count > 1)
+        else if (accion.Equals("eliminar") && caja2.getTitular().Count > 1)
         {
-
+            CajaDeAhorro caja = UsuarioActual.BuscarCajaPorCbu(cbu);
             caja.removeTitular(titular);
+            caja2.removeTitular(titular);
+            titular.RemoveCajaDeAhorro(caja);
+            Movimiento movimiento = new Movimiento(NewIdMovimiento(), caja, "Caja eliminada" + caja.cbu, 0, DateTime.Now);
+            movimientos.Add(movimiento);
+            caja.addMovimiento(movimiento);
             resultado = true;
-        }
-        else
-        {
-            MessageBox.Show("No puede quedar sin titulares la caja de ahorro");
         }
 
         return resultado;
     }
 
 
-    public void AltaMovimiento(string cbu, string detalle, float monto, DateTime fecha)
+    public Pago AltaPago(string nombre, double monto, string tipoDePago)
     {
-        CajaDeAhorro caja = BuscarCajaPorCbu(cbu);
-        Movimiento nuevoMovimiento = new Movimiento(NewIdMovimiento(), caja, detalle, monto, fecha);
-
-        movimientos.Add(nuevoMovimiento);
-        caja.addMovimiento(nuevoMovimiento);
-
-    }
-
-    public void AltaPago(string dni, string nombre, float monto, Pago.TipoDePago tipoDePago)
-    {
-        Usuario usuario = BuscarUsuarioPordni(dni);
+        Usuario usuario = UsuarioActual;
         Pago pago = new Pago(NewIdPago(), usuario, nombre, monto, tipoDePago);
+
 
         pagos.Add(pago);
         usuario.AddPago(pago);
+        return pago;
     }
 
 
@@ -278,34 +321,15 @@ public class Banco
         return resultado;
     }
 
-    // Preguntar al profe que exactamente se debe modificar 
-    public bool ModificarPago(string dni)
+
+    public bool ModificarPago(string nombre)
     {
         bool resultado = false;
-        Usuario usuario = BuscarUsuarioPordni(dni);
-        foreach (Pago pago in pagos)
+        Pago PagoActual = BuscarPagoPorNombre(nombre);
+
+        if (PagoActual.pagado == false)
         {
-            if (usuario != null && pago.pagado == false)
-            {
-                pago.pagado = true;
-                resultado = true;
-
-            }
-        }
-        return resultado;
-    }
-
-    public bool AltaPlazoFijo(string dni, float monto, DateTime fechaIni, DateTime fechaFin, float tasa)
-    {
-        bool resultado = false;
-        Usuario usuario = BuscarUsuarioPordni(dni);
-        PlazoFijo plazoFijo = new PlazoFijo(NewIdPlazo(), usuario, monto, fechaIni, fechaFin, tasa);
-
-        if (usuario != null)
-        {
-
-            plazos.Add(plazoFijo);
-            usuario.AddPlazoFijo(plazoFijo);
+            PagoActual.pagado = true;
             resultado = true;
 
         }
@@ -313,15 +337,54 @@ public class Banco
         return resultado;
     }
 
-    public bool BajaPlazoFijo(int id, string dni)
+    public bool PagarPago(string cbu, int numero, string nombre)
+    {
+        bool resultado = false;
+        Pago PagoActual = BuscarPagoPorNombre(nombre);
+        CajaDeAhorro cajaActual = BuscarCajaPorCbu(cbu);
+        Tarjeta tarjeta = BuscarTarjetaPorNumero(numero);
+
+
+        if (!numero.Equals("") && tarjeta.limite > PagoActual.monto)
+        {
+
+            ModificarPago(nombre);
+            //  tarjeta.consumos = tarjeta.consumos +  PagoActual.monto;
+            resultado = true;
+        }
+        else if (cbu != "")
+        {
+
+            ModificarPago(nombre);
+            //   cajaActual.saldo = cajaActual.saldo - PagoActual.monto;
+            resultado = true;
+        }
+
+
+        return resultado;
+    }
+
+    public bool AltaPlazoFijo(float monto, DateTime fechaIni, DateTime fechaFin, float tasa)
+    {
+        bool resultado = false;
+        PlazoFijo plazoFijo = new PlazoFijo(NewIdPlazo(), UsuarioActual, monto, fechaIni, fechaFin, tasa);
+
+        plazos.Add(plazoFijo);
+        UsuarioActual.AddPlazoFijo(plazoFijo);
+        resultado = true;
+
+
+        return resultado;
+    }
+
+    public bool BajaPlazoFijo(int id)
 
     {
         bool resultado = false;
-        Usuario usuario = BuscarUsuarioPordni(dni);
         foreach (PlazoFijo plazoFijo in plazos)
         {
 
-            if (usuario.dni.Equals(dni) && plazoFijo.id == id)
+            if (plazoFijo.id == id)
             {
 
                 if (plazoFijo.pagado)
@@ -333,7 +396,7 @@ public class Banco
                     {
 
                         plazos.Remove(plazoFijo);
-                        usuario.RemovePlazoFijo(plazoFijo);
+                        UsuarioActual.RemovePlazoFijo(plazoFijo);
                         resultado = true;
                     }
                 }
@@ -343,41 +406,79 @@ public class Banco
         return resultado;
     }
 
-    public bool AltaTarjetaCredito(string dni, int numero, int codigoV, float limite, float consumos)
+    /*  public bool AltaTarjetaCredito(string numero, string codigoV, float limite, float consumos)
+      {
+          bool resultado = false;
+          Tarjeta tarjeta = new Tarjeta(NewIdTarjeta(), UsuarioActual, numero, codigoV, limite, consumos);
+
+          tarjetas.Add(tarjeta);
+          UsuarioActual.AddTarjeta(tarjeta);
+          resultado = true;
+
+
+          return resultado;
+      }*/
+
+    public bool AltaTarjetaCredito()
     {
         bool resultado = false;
-        Usuario usuario = BuscarUsuarioPordni(dni);
-        Tarjeta tarjeta = new Tarjeta(NewIdTarjeta(), usuario, numero, codigoV, limite, consumos);
+        Random num = new Random();
+        Random codigo = new Random();
 
-        if (usuario != null)
+        if (tarjetas.Count() == 0)
         {
+            string tarjetanum = num.Next(100, 9999999).ToString();
+            string codigotar = codigo.Next(100, 999).ToString();
 
-            tarjetas.Add(tarjeta);
-            usuario.AddTarjeta(tarjeta);
+            Tarjeta nuevaTarjeta = new Tarjeta(NewIdTarjeta(), UsuarioActual, tarjetanum, codigotar, 25000, 0);
+            UsuarioActual.AddTarjeta(nuevaTarjeta);
+            tarjetas.Add(nuevaTarjeta);
             resultado = true;
         }
 
+        else
+        {
+            string nuevoNum = num.Next(100, 9999999).ToString();
+            string nuevoCog = codigo.Next(100, 999).ToString();
+
+            for (int i = 0; i < tarjetas.Count; i++)
+            {
+                string codigotar = codigo.Next(100, 999).ToString();
+                string tarjetaNum = tarjetas.ElementAt(i).numero;
+
+                if (!tarjetaNum.Equals(nuevoNum))
+                {
+
+                    Tarjeta nuevaTar2 = new Tarjeta(NewIdTarjeta(), UsuarioActual, nuevoNum, nuevoCog, 2000000, 0);
+                    UsuarioActual.AddTarjeta(nuevaTar2);
+                    tarjetas.Add(nuevaTar2);
+                    resultado = true;
+                    break;
+                }
+            }
+        }
         return resultado;
     }
 
-    public bool BajaTarjetaCredito(int id, string dni)
+
+
+    public bool BajaTarjetaCredito(int id)
     {
         bool resultado = false;
-        Usuario usuario = BuscarUsuarioPordni(dni);
-        if (usuario != null)
+
+
+        foreach (Tarjeta tarjeta in UsuarioActual.getTarjetas())
         {
-            foreach (Tarjeta tarjeta in tarjetas)
+            if (tarjeta.Equals(id) && tarjeta.consumos == 0)
             {
-                if (tarjeta.Equals(id) && tarjeta.consumos == 0)
-                {
 
-                    tarjetas.Remove(tarjeta);
-                    usuario.RemoveTarjeta(tarjeta);
-
-                }
+                tarjetas.Remove(tarjeta);
+                UsuarioActual.RemoveTarjeta(tarjeta);
 
             }
+
         }
+
         return resultado;
     }
 
@@ -396,94 +497,74 @@ public class Banco
 
     // MOSTRAR DATOS
 
-    public List<CajaDeAhorro> MostrarCajasDeAhorro(string dni)
+
+
+    public List<CajaDeAhorro> MostrarCajasDeAhorroUsuarioActual()
     {
-
-        foreach (Usuario usuario in usuarios)
-        {
-            if (usuario.dni.Equals(dni))
-            {
-                return usuario.getCajas().ToList();
-            }
-        }
-        return null;
-    }
-    public List<Movimiento> MostrarMovimientos(in CajaDeAhorro cajaIn)
-    {
-        foreach (CajaDeAhorro cajas in cajas)
-        {
-
-            if (cajas.id == cajaIn.id)
-            {
-
-                return cajas.getMovimientos().ToList();
-
-            }
-
-        }
-        return null;
-    }
-    public List<Pago> MostrarPagos(int dni)
-    {
-        foreach (Usuario usuario in usuarios)
-        {
-            if (usuario.dni.Equals(dni))
-            {
-
-                return usuario.getPagos().ToList();
-
-            }
-        }
-
-        return null;
-    }
-    public List<PlazoFijo> MostrarPlazosFijos(int dni)
-    {
-        foreach (Usuario usuario in usuarios)
-        {
-            if (usuario.dni.Equals(dni))
-            {
-
-                return usuario.getPlazos().ToList();
-
-            }
-        }
-
-        return null;
-    }
-    public List<Tarjeta> MostrarTarjetasDeCredito(int dni)
-    {
-        foreach (Usuario usuario in usuarios)
-        {
-            if (usuario.dni.Equals(dni))
-            {
-
-                return usuario.getTarjetas().ToList();
-
-            }
-        }
-
-        return null;
+        return UsuarioActual.getCajas().ToList();
     }
 
-    public List<Movimiento> BuscarMovimiento(in CajaDeAhorro cajaIn, in string detalle, in DateOnly fecha, in float monto)
+
+    public List<Movimiento> MostrarMovimientosUsuarioActual(string cbu)
     {
-
-        foreach (CajaDeAhorro caja in cajas)
+        foreach (CajaDeAhorro caja in UsuarioActual.getCajas())
         {
-
-            if (caja.id == cajaIn.id)
+            if (caja.cbu == cbu)
             {
-                if (detalle != null)
-                {
-                }
-
                 return caja.getMovimientos().ToList();
+
             }
 
         }
         return null;
+    }
+    public List<Pago> MostrarPagosPendiente()
+    {
+        List<Pago> random = new List<Pago>();
 
+        foreach (Pago pago in UsuarioActual.getPagos())
+        {
+            if (!pago.pagado)
+            {
+                random.Add(pago);
+            }
+        }
+
+        return random;
+
+    }
+
+    public List<Pago> MostrarPagosRealizado()
+    {
+        List<Pago> random = new List<Pago>();
+
+        foreach (Pago pago in UsuarioActual.getPagos())
+        {
+            if (pago.pagado)
+            {
+                random.Add(pago);
+            }
+        }
+
+        return random;
+    }
+
+
+    public List<PlazoFijo> MostrarPlazosFijos()
+    {
+        return UsuarioActual.getPlazos().ToList();
+    }
+
+
+    public List<Tarjeta> MostrarTarjetasDeCredito()
+    {
+        return UsuarioActual.getTarjetas().ToList();
+    }
+
+
+    public List<Tarjeta> MostrarTarjetasDeCreditoUsuarioActual()
+    {
+        return UsuarioActual.getTarjetas().ToList();
     }
 
     // METODOS COMPLEMENTARIOS 
@@ -504,7 +585,23 @@ public class Banco
         return resultado;
     }
 
-    private CajaDeAhorro BuscarCajaPorCbu(string cbu)
+    private bool ExisteEmail(string mail)
+    {
+        bool resultado = true;
+        foreach (Usuario usuario in usuarios)
+        {
+
+            if (usuario.dni.Equals(mail))
+            {
+
+                resultado = false;
+
+            }
+        }
+        return resultado;
+    }
+
+    public CajaDeAhorro BuscarCajaPorCbu(string cbu)
     {
         CajaDeAhorro resultado = null;
         foreach (CajaDeAhorro caja in cajas)
@@ -519,6 +616,68 @@ public class Banco
         return resultado;
     }
 
+    public CajaDeAhorro BuscarCajaPorCbuUsuarioActual(string cbu)
+    {
+        CajaDeAhorro resultado = null;
+        foreach (CajaDeAhorro caja in UsuarioActual.getCajas())
+        {
+
+            if (caja.cbu == cbu)
+            {
+                resultado = caja;
+
+            }
+        }
+        return resultado;
+    }
+
+
+    private bool ExisteCajaPorCbu(string cbu)
+    {
+        bool resultado = false;
+        foreach (CajaDeAhorro caja in cajas)
+        {
+
+            if (caja.cbu == cbu)
+            {
+                resultado = true;
+
+            }
+        }
+        return resultado;
+    }
+
+
+    private Tarjeta BuscarTarjetaPorNumero(int numero)
+    {
+        Tarjeta resultado = null;
+        foreach (Tarjeta tarjeta in UsuarioActual.getTarjetas())
+        {
+
+            if (tarjeta.numero.Equals(numero))
+            {
+                resultado = tarjeta;
+
+            }
+        }
+        return resultado;
+    }
+
+    public Pago BuscarPagoPorNombre(string nombre)
+    {
+        Pago resultado = null;
+        foreach (Pago pago in pagos)
+        {
+
+            if (pago.nombre == nombre)
+            {
+                resultado = pago;
+
+            }
+        }
+        return resultado;
+    }
+
     //OPERACIONES DEL USUARIO
 
     public bool IniciarSesion(string Usuario, string Contraseña)
@@ -526,7 +685,8 @@ public class Banco
         int intentos = 0;
         foreach (Usuario usuario in usuarios)
         {
-            if (usuario.nombre.Equals(Usuario) && usuario.clave.Equals(Contraseña) && usuario.bloqueados != true)
+
+            if (usuario.nombre.Equals(Usuario) && usuario.clave.Equals(Contraseña) && !usuario.bloqueados /*&& intentos > 2*/)
             {
 
                 UsuarioActual = usuario;
@@ -535,10 +695,10 @@ public class Banco
             else
             {
                 intentos++;
-            }
-            if (intentos == 3)
-            {
-                usuario.bloqueados = true;
+                if (intentos == 3)
+                {
+                    usuario.bloqueados = true;
+                }
             }
         }
 
@@ -547,7 +707,7 @@ public class Banco
 
     public void CerrarSesion()
     {
-        UsuarioActual = null;
+        this.UsuarioActual = null;
     }
 
     public bool CrearCajaAhorro(CajaDeAhorro cajaIn)
@@ -570,77 +730,80 @@ public class Banco
 
     }
 
-    public bool Depositar(in CajaDeAhorro cajaIn, float monto)
+    public bool Depositar(string cbu, float monto)
     {
 
         bool resultado = false;
+        CajaDeAhorro cajaBanco = BuscarCajaPorCbu(cbu);
+        CajaDeAhorro cajaUsuario = BuscarCajaPorCbuUsuarioActual(cbu);
 
-        foreach (CajaDeAhorro caja in cajas)
+        if (monto > 0)
         {
-            if (caja.id == cajaIn.id)
-            {
+            cajaBanco.saldo = cajaBanco.saldo + monto;
 
-                caja.saldo = caja.saldo + monto;
-                resultado = true;
+            Movimiento movimiento = new Movimiento(NewIdMovimiento(), cajaUsuario, "Deposito" + cajaUsuario.cbu, monto, DateTime.Now);
+            movimientos.Add(movimiento);
+            cajaUsuario.addMovimiento(movimiento);
 
-            }
-
+            resultado = true;
         }
 
         return resultado;
     }
 
-    public bool Retirar(in CajaDeAhorro cajaIn, float monto)
+    public bool Retirar(string cbu, float monto)
     {
-
         bool resultado = false;
+        CajaDeAhorro cajaBanco = BuscarCajaPorCbu(cbu);
+        CajaDeAhorro cajaUsuario = BuscarCajaPorCbuUsuarioActual(cbu);
 
-        foreach (CajaDeAhorro caja in cajas)
+        if (cajaBanco.saldo >= monto)
         {
-            if (caja.id == cajaIn.id && caja.saldo >= monto)
-            {
+            cajaBanco.saldo = cajaBanco.saldo - monto;
+            Movimiento movimiento = new Movimiento(NewIdMovimiento(), cajaUsuario, "Retiro" + cajaUsuario.cbu, monto, DateTime.Now);
+            movimientos.Add(movimiento);
+            cajaUsuario.addMovimiento(movimiento);
 
+            resultado = true;
+        }
+        return resultado;
+    }
 
-                caja.saldo = caja.saldo - monto;
-                resultado = true;
+    public bool Transferir(string origen, string destino, float Monto)
+    {
+        bool resultado = false;
+        CajaDeAhorro cajaOrigen = BuscarCajaPorCbu(origen);
 
-            }
+        if (ExisteCajaPorCbu(destino) && cajaOrigen.saldo >= Monto)
+        {
+            CajaDeAhorro cajaDestino = BuscarCajaPorCbu(destino);
+
+            cajaOrigen.saldo = cajaOrigen.saldo - Monto;
+            cajaDestino.saldo = cajaDestino.saldo + Monto;
+            Movimiento movimientoOrigen = new Movimiento(NewIdMovimiento(), cajaOrigen, "Transferencia" + cajaOrigen.cbu, Monto, DateTime.Now);
+            Movimiento movimientoDestino = new Movimiento(NewIdMovimiento(), cajaDestino, "Transferencia" + cajaDestino.cbu, Monto, DateTime.Now);
+            movimientos.Add(movimientoOrigen);
+            movimientos.Add(movimientoDestino);
+            cajaOrigen.addMovimiento(movimientoOrigen);
+            cajaDestino.addMovimiento(movimientoDestino);
+
+            resultado = true;
         }
 
         return resultado;
     }
 
-    public bool Transferir(in CajaDeAhorro origen, in CajaDeAhorro destino, float Monto)
-    {
-        bool resultado = false;
-
-        foreach (CajaDeAhorro caja in cajas)
-        {
-            if (caja.id == origen.id && caja.id == destino.id)
-            {
-
-                if (origen.saldo >= Monto)
-                {
-                    origen.saldo = origen.saldo - Monto;
-                    destino.saldo = destino.saldo + Monto;
-                    resultado = true;
-                }
-            }
-        }
-
-        return resultado;
-    }
-
-    public List<Movimiento> BuscarMovimiento(in CajaDeAhorro cajaIn, in string detalle, in DateTime fecha, in float monto)
+    public List<Movimiento> BuscarMovimiento(string cbu, string detalle, DateTime fecha, float monto)
     {
 
-        List<Movimiento>? resultado = null;
+        List<Movimiento> resultado = new List<Movimiento>();
+        CajaDeAhorro cajaDeAhorro = BuscarCajaPorCbu(cbu);
 
-        foreach (CajaDeAhorro caja in cajas)
+        foreach (CajaDeAhorro caja in UsuarioActual.getCajas())
         {
-            foreach (Movimiento movimiento in cajaIn.getMovimientos())
+            foreach (Movimiento movimiento in cajaDeAhorro.getMovimientos())
             {
-                if (caja.id == cajaIn.id)
+                if (caja.id == cajaDeAhorro.id)
                 {
                     if (detalle != "" && fecha.Equals("") && monto.Equals("") && movimiento.detalle.Equals(detalle))
                     {
@@ -698,37 +861,27 @@ public class Banco
         return resultado;
     }
 
-    public void PagarTarjeta(Tarjeta tarjetaIn, CajaDeAhorro cajaIn)
+    public bool PagarTarjeta(int numero, string cbu)
     {
 
-        foreach (Tarjeta tarjeta in tarjetas)
+        bool resultado = false;
+        CajaDeAhorro caja = UsuarioActual.BuscarCajaPorCbu(cbu);
+        Tarjeta tarjeta = UsuarioActual.BuscarTarjetaPorNumero(numero);
+
+        if (caja.saldo >= tarjeta.consumos)
         {
-            foreach (CajaDeAhorro caja in cajas)
-            {
 
+            float monto = caja.saldo = caja.saldo - tarjeta.consumos;
+            tarjeta.consumos = 0;
+            // agregar movimiento
 
-                if (caja.id == cajaIn.id && cajaIn.saldo >= tarjetaIn.consumos)
-                {
+            caja.addMovimiento(new Movimiento(caja.id, caja, "Pago Tarjeta", monto, DateTime.Today));
+            movimientos.Add(new Movimiento(caja.id, caja, "Pago Tarjeta", monto, DateTime.Today));
+            resultado = true;
 
-
-                    float monto = cajaIn.saldo = cajaIn.saldo - tarjetaIn.consumos;
-                    tarjetaIn.consumos = 0;
-                    // agregar movimiento
-
-                    caja.addMovimiento(new Movimiento(cajaIn.id, cajaIn, "Pago Tarjeta", monto, DateTime.Today));
-                    movimientos.Add(new Movimiento(cajaIn.id, cajaIn, "Pago Tarjeta", monto, DateTime.Today));
-
-
-                }
-                else
-                {
-
-                    // muestra en pantalla que no hay saldo suficiente
-
-
-                }
-            }
         }
+
+        return resultado;
     }
     private int NewIdUsuario()
     {

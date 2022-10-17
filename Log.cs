@@ -21,8 +21,6 @@ namespace WinFormsApp1
         public string apellido;
 
         public Banco elBanco;
-        public Helper helper;
-
 
         public TransfDelegado TransfEvento;
 
@@ -31,8 +29,6 @@ namespace WinFormsApp1
             logued = false;
             InitializeComponent();
             elBanco = b;
-            //helper = new Helper();
-            //helper.CargarListas();
         }
 
 

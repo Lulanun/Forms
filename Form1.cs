@@ -20,7 +20,7 @@ namespace WinFormsApp1
         string usuario;
         string pass;
         string dni;
-        bool logued;
+     
         public bool touched;
         public Usuario? usuarioActual;
 
@@ -28,17 +28,17 @@ namespace WinFormsApp1
         {
             InitializeComponent();
             banco = Banco.GetInstancia();
-            logued = false;
             hijoLoguin = new Log(banco);
             hijoLoguin.logued = false;
             hijoLoguin.MdiParent = this;
             hijoLoguin.TransfEvento += TransfDelegado;
             hijoLoguin.Show();
             touched = false;
-            
+
         }
 
-        private void TransfDelegado(string Usuario, string Pass) 
+
+        private void TransfDelegado(string Usuario, string Pass)
         {
             this.usuario = Usuario;
             this.pass = Pass;
@@ -50,6 +50,7 @@ namespace WinFormsApp1
                 hijoMain = new Menu();
                 hijoMain.usuario = Usuario;
                 hijoMain.MdiParent = this;
+                hijoMain.TransfEvento += TransfDelegadoMenu;
                 usuarioActual = banco.UsuarioActual;
                 hijoMain.Show();
             }
@@ -61,9 +62,23 @@ namespace WinFormsApp1
 
         }
 
+        private void TransfDelegadoMenu()
+
+        {
+            banco.CerrarSesion();
+            MessageBox.Show("Hasta luego", "Adios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            hijoMain.Close();
+            hijoLoguin = new Log(banco);
+            hijoLoguin.MdiParent = this;
+            hijoLoguin.TransfEvento += TransfDelegado;
+            hijoLoguin.Show();
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.AutoSize = true;
+        
         }
     }
 }
